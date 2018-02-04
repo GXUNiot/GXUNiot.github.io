@@ -32,6 +32,16 @@
   
 
   
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?dbcb61a5af5317e8eed10838f7a54afc";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 
 </head>
 
@@ -155,7 +165,10 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <!-- 目录内容 -->
+        
+        <!-- 目录内容结束 -->
+<article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -286,13 +299,29 @@
 
 
   
-  
-  
 
   
 
   
 
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/about/index.html",
+  owner: 'gxuniot',
+  repo: 'gxuniot.github.io',
+  oauth: {
+    client_id: 'b9e19a024d02792bf2cf',
+    client_secret: '462408885e5a27df0bd9b3b8fc6550d3e1cac47f',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
