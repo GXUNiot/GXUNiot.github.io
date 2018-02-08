@@ -6,35 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>搭建支持mbed的Keil开发环境 | GXUNiot-Blog</title>
+  <title>Tag: 蓝桥嵌入式 | GXUNiot-Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mbed是一个面向ARM处理器的原型开发平台，提供了SDK、HDK和WEB编译器。其中WEB编译器非常便捷，但因为其依赖网络在某些时候很不方便，本文介绍的是在本地搭建支持mbed的Keil开发环境。">
-<meta name="keywords" content="基础,Keil,mbed">
-<meta property="og:type" content="article">
-<meta property="og:title" content="搭建支持mbed的Keil开发环境">
-<meta property="og:url" content="http://yoursite.com/2018/02/05/搭建支持mbed的Keil开发环境/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="GXUNiot-Blog">
+<meta property="og:url" content="http://yoursite.com/tags/蓝桥嵌入式/index.html">
 <meta property="og:site_name" content="GXUNiot-Blog">
-<meta property="og:description" content="mbed是一个面向ARM处理器的原型开发平台，提供了SDK、HDK和WEB编译器。其中WEB编译器非常便捷，但因为其依赖网络在某些时候很不方便，本文介绍的是在本地搭建支持mbed的Keil开发环境。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E4%B8%8B%E8%BD%BD-%E6%B3%A8%E5%86%8C.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E4%B8%8B%E8%BD%BD-%E4%B8%8B%E8%BD%BD.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E5%AE%89%E8%A3%85-%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE%E9%80%89%E6%8B%A9.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E5%AE%89%E8%A3%85-%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E5%AE%89%E8%A3%85-%E5%8F%96%E6%B6%88%E5%AE%89%E8%A3%85%E5%8C%85.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B3%A8%E5%86%8Cmbed.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E7%A9%BA%E5%BC%80%E5%8F%91%E6%9D%BF%E6%8F%90%E7%A4%BA.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B7%BB%E5%8A%A0%E5%BC%80%E5%8F%91%E6%9D%BF-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B7%BB%E5%8A%A0%E5%BC%80%E5%8F%91%E6%9D%BF-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B7%BB%E5%8A%A0%E5%BC%80%E5%8F%91%E6%9D%BF%E6%88%90%E5%8A%9F.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E5%AF%BC%E5%87%BA%E9%A1%B9%E7%9B%AE-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E5%AF%BC%E5%87%BA%E9%A1%B9%E7%9B%AE-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E4%B8%8B%E8%BD%BD.png">
-<meta property="og:updated_time" content="2018-02-05T10:02:03.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建支持mbed的Keil开发环境">
-<meta name="twitter:description" content="mbed是一个面向ARM处理器的原型开发平台，提供了SDK、HDK和WEB编译器。其中WEB编译器非常便捷，但因为其依赖网络在某些时候很不方便，本文介绍的是在本地搭建支持mbed的Keil开发环境。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E4%B8%8B%E8%BD%BD-%E6%B3%A8%E5%86%8C.png">
+<meta name="twitter:title" content="GXUNiot-Blog">
   
     <link rel="alternative" href="/atom.xml" title="GXUNiot-Blog" type="application/atom+xml">
   
@@ -170,164 +150,42 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <!-- 目录内容 -->
-        
-            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-            <span class="btn-bg"></span>
-            <span class="btn-text">文章导航</span>
-            </p>
-            <div id="toc-article" class="toc-article">
-                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-                <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Keil下载、安装"><span class="toc-number">1.</span> <span class="toc-text">1 Keil下载、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Keil-下载"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Keil 下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Keil安装"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Keil安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Keil支持包下载、安装"><span class="toc-number">2.</span> <span class="toc-text">2 Keil支持包下载、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-下载所需的支持包"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 下载所需的支持包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-支持包安装"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 支持包安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-获取mbed项目的Keil版本"><span class="toc-number">3.</span> <span class="toc-text">3 获取mbed项目的Keil版本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-注册mbed"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 注册mbed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-添加mbed-WEB编译器项目"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 添加mbed WEB编译器项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-导出离线工程"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 导出离线工程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-进行本地开发"><span class="toc-number">4.</span> <span class="toc-text">4 进行本地开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-使用Keil开发mbed离线项目"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 使用Keil开发mbed离线项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-资源下载"><span class="toc-number">5.</span> <span class="toc-text">5 资源下载</span></a></li></ol>
-           </div>
-           <script type="text/javascript">
-            function showToc(){
-                var toc_article = document.getElementById("toc-article");
-                var show_toc_btn = document.getElementById("show-toc-btn");
-                toc_article.setAttribute("style","display:block");
-                show_toc_btn.setAttribute("style","display:none");
-                };
-            function showBtn(){
-                var toc_article = document.getElementById("toc-article");
-                var show_toc_btn = document.getElementById("show-toc-btn");
-                toc_article.setAttribute("style","display:none");
-                show_toc_btn.setAttribute("style","display:block");
-                };
-           </script>
-        
-        <!-- 目录内容结束 -->
-<article id="post-搭建支持mbed的Keil开发环境" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      搭建支持mbed的Keil开发环境
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/02/08/使用CooCox-MDK-插件开发STM32/" class="archive-article-date">
+  	<time datetime="2018-02-08T15:39:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/02/08/使用CooCox-MDK-插件开发STM32/">使用CooCox MDK 插件开发STM32</a>
     </h1>
   
 
-        
-        <a href="/2018/02/05/搭建支持mbed的Keil开发环境/" class="archive-article-date">
-  	<time datetime="2018-02-05T05:26:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>mbed是一个面向ARM处理器的原型开发平台，提供了SDK、HDK和WEB编译器。其中WEB编译器非常便捷，但因为其依赖网络在某些时候很不方便，本文介绍的是在本地搭建支持mbed的Keil开发环境。</p>
-<a id="more"></a>
-<p>什么是mbed？2014年，ARM宣布了针对物联网低功耗设备的操作系统mbed OS。mbed可帮助我们构建自己的嵌入式连接设备，能够快速的从规划到原型设计再到生产。mbed之所以能做到这一点，是因为mbed提供一套规模庞大的软件组件、工具、设备服务和部署服务，协助我们在开发板上设计项目原型时，无需考虑硬件底层差异，全部使用统一的API操控硬件，而且该API使用C++搭建，面向对象的优良特性更易于开发维护。</p>
-<h1 id="1-Keil下载、安装"><a href="#1-Keil下载、安装" class="headerlink" title="1 Keil下载、安装"></a>1 Keil下载、安装</h1><h2 id="1-1-Keil-下载"><a href="#1-1-Keil-下载" class="headerlink" title="1.1 Keil 下载"></a>1.1 Keil 下载</h2><p>为了支持mbed，我们需要最新版本的Keil MDK。<br>进入 <a href="https://www.keil.com/demo/eval/arm.htm" target="_blank" rel="noopener">ARM Keil</a>官网下载</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E4%B8%8B%E8%BD%BD-%E6%B3%A8%E5%86%8C.png" alt="登记个人联系信息"></p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E4%B8%8B%E8%BD%BD-%E4%B8%8B%E8%BD%BD.png" alt="下载最新版本MDK"></p>
-<h2 id="1-2-Keil安装"><a href="#1-2-Keil安装" class="headerlink" title="1.2 Keil安装"></a>1.2 Keil安装</h2><p>双击打开下载的MDK524a.EXE，Win8以上系统最好以右键管理员权限运行。一路NEXT<img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E5%AE%89%E8%A3%85-%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE%E9%80%89%E6%8B%A9.png" alt="修改安装位置"><br>自行修改安装位置</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E5%AE%89%E8%A3%85-%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF.png" alt="填写个人信息"><br>以上信息随便填即可</p>
-<p>安装完成后运行Keil MDK。<br><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/MDK%E5%AE%89%E8%A3%85-%E5%8F%96%E6%B6%88%E5%AE%89%E8%A3%85%E5%8C%85.png" alt="取消安装报"><br>弹出包安装界面，全部关掉，待会我们自行安装需要的包即可。<br>Keil MDK是需要购买激活的，基于国情，大家自行<a href="https://jingyan.baidu.com/article/2f9b480d9ecf9f41ca6cc248.html" target="_blank" rel="noopener">Baidu Keil破解</a>,注意！Win8及以上系统进行Keil注册时，需右键管理员权限运行才能有效注册。</p>
-<h1 id="2-Keil支持包下载、安装"><a href="#2-Keil支持包下载、安装" class="headerlink" title="2 Keil支持包下载、安装"></a>2 Keil支持包下载、安装</h1><h2 id="2-1-下载所需的支持包"><a href="#2-1-下载所需的支持包" class="headerlink" title="2.1 下载所需的支持包"></a>2.1 下载所需的支持包</h2><p>访问<a href="http://www.keil.com/dd2/pack/" target="_blank" rel="noopener">MDK5 Software Packs</a>下载所需的支持包</p>
-<table>
-<thead>
-<tr>
-<th>序号</th>
-<th>支持包</th>
-<th>当前版本</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><a href="https://keilpack.azureedge.net/pack/ARM.CMSIS.5.2.0.pack" target="_blank" rel="noopener">CMSIS (Cortex Microcontroller Software Interface Standard)</a></td>
-<td>5.2.0</td>
-<td>Cortex微控制器软件接口标准</td>
-</tr>
-<tr>
-<td>2</td>
-<td><a href="https://keilpack.azureedge.net/pack/Keil.STM32F1xx_DFP.2.2.0.pack" target="_blank" rel="noopener">STMicroelectronics STM32F1 Series Device Support, Drivers and </a></td>
-<td>2.2.2</td>
-<td>STM32F1系列支持包，如使用其他系列MCU请自行选择下载</td>
-</tr>
-</tbody>
-</table>
-<p>然而在此前作者在开发时安装了多个支持包，其中包含mbed、Nucleo这类关键字，现在测试的时候发现只需上面两个支持包即可正常开发，但作者建议各位按照本文使用最新版本的MDK5和相关支持包，如在开发过程中遇到MDK5上的硬件、代码崩溃而WEB编译器下正常，建议尝试补上其他支持包。</p>
-<h2 id="2-2-支持包安装"><a href="#2-2-支持包安装" class="headerlink" title="2.2 支持包安装"></a>2.2 支持包安装</h2><p>双击运行，一路NEXT直到安装完成，支持包的安装位置不可更改，支持包安装位置在安装Keil MDK时就已经在步骤1.2中确定。</p>
-<h1 id="3-获取mbed项目的Keil版本"><a href="#3-获取mbed项目的Keil版本" class="headerlink" title="3 获取mbed项目的Keil版本"></a>3 获取mbed项目的Keil版本</h1><h2 id="3-1-注册mbed"><a href="#3-1-注册mbed" class="headerlink" title="3.1 注册mbed"></a>3.1 注册mbed</h2><p>登陆<a href="https://os.mbed.com/" target="_blank" rel="noopener">mbed OS</a>官网,进入右上角Log in/Sign up，选择Sign up注册。<br><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B3%A8%E5%86%8Cmbed.png" alt="注册mbed账号"><br>注意需要验证邮箱！<br>完成注册后登陆，点击右上方<a href="https://os.mbed.com/compiler/" target="_blank" rel="noopener">Compile</a>进入WEB编译器</p>
-<h2 id="3-2-添加mbed-WEB编译器项目"><a href="#3-2-添加mbed-WEB编译器项目" class="headerlink" title="3.2 添加mbed WEB编译器项目"></a>3.2 添加mbed WEB编译器项目</h2><p>点击左上 New 开始新建项目，第一次会弹出如下错误：</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E7%A9%BA%E5%BC%80%E5%8F%91%E6%9D%BF%E6%8F%90%E7%A4%BA.png" alt="错误提示-空开发板"><br>该错提示是你没有添加任何开发板，在新建项目时需要选择基于什么开发板，点击Add Platform进入开发板选择。</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B7%BB%E5%8A%A0%E5%BC%80%E5%8F%91%E6%9D%BF-1.png" alt="Nucleo_F103RB"><br>找到Nucleo-F103RB，我们以STM32F103C8T6为示例，Nucleo-F103RB与其同一个系列，但是要注意，RB是LQFP64封装，在基于Nucleo-F103RB建立项目时，其外设寄存器能覆盖64引脚数及以下的STM32F1xx芯片，STM32F103C8T6引脚数为48，能完全覆盖，如果是ZET6则不能完全覆盖，也就是部分IO、外设无法使用，因为根本没定义。</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B7%BB%E5%8A%A0%E5%BC%80%E5%8F%91%E6%9D%BF-2.png" alt="添加开发板到mbed WEB编译器"><br>单击右边的 Add to your Mbed Compiler （如使用F4、F7或其他如NXP的MCU，也同样的方法选择型号最相近的mbed开发板，因为mbed官方认可支持mbedOS的开发板只是部分，但其他不在其中的MCU仍可以使用mbed来开发，但必须是官方支持开发板的“近亲”）</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%B7%BB%E5%8A%A0%E5%BC%80%E5%8F%91%E6%9D%BF%E6%88%90%E5%8A%9F.png" alt="开发板添加成功"></p>
-<h2 id="3-3-导出离线工程"><a href="#3-3-导出离线工程" class="headerlink" title="3.3 导出离线工程"></a>3.3 导出离线工程</h2><p>回到WEB编译器，重新新建项目</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.png" alt="新建mbed项目"><br>此处默认就行</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E5%AF%BC%E5%87%BA%E9%A1%B9%E7%9B%AE-1.png" alt="右键导出工程"><br>在项目名右键点击导出工程</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E5%AF%BC%E5%87%BAmbed%E9%A1%B9%E7%9B%AE-%E5%AF%BC%E5%87%BA%E9%A1%B9%E7%9B%AE-2.png" alt="选择导出类型"><br>这里可以选择导出项目的支持板型和编译器，安装本文教程并且使用STM32F103RB的“近亲”就默认然后Export就会开始下载，其它MCU或开发环境（非MDK5）则自选。</p>
-<h1 id="4-进行本地开发"><a href="#4-进行本地开发" class="headerlink" title="4 进行本地开发"></a>4 进行本地开发</h1><h2 id="4-1-使用Keil开发mbed离线项目"><a href="#4-1-使用Keil开发mbed离线项目" class="headerlink" title="4.1 使用Keil开发mbed离线项目"></a>4.1 使用Keil开发mbed离线项目</h2><p>下载解压，双击xx.uvprojx的文件打开项目。</p>
-<p><img src="https://raw.githubusercontent.com/GXUNiot/FigureBed/master/Blog/%E6%90%AD%E5%BB%BA%E6%94%AF%E6%8C%81mbed%E7%9A%84Keil%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E4%B8%8B%E8%BD%BD.png" alt="编译运行下载"><br>点击左上ReBuild编译程序，出现“- 0 Error(s), 0 Warning(s).”则说明mbed项目在本地编译成功，接下来可以选用ST-Lnik等工具或者输出.hex文件下载到STM32中。使用过标准库的应该发现，mbed项目即使包含了大量的API编译速度也是相当快，毕竟都是ARM旗下的产品。<br>至此，搭建支持mbed的Keil开发环境已经结束。</p>
-<h1 id="5-资源下载"><a href="#5-资源下载" class="headerlink" title="5 资源下载"></a>5 资源下载</h1><p>以下是用到的资源整合</p>
-<table>
-<thead>
-<tr>
-<th>序号</th>
-<th>资源</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><a href="https://pan.baidu.com/s/1kWx636R" target="_blank" rel="noopener">Keil MDk及支持包</a></td>
-<td>Keil 5 MDK</td>
-</tr>
-<tr>
-<td>2</td>
-<td><a href="https://pan.baidu.com/s/1i6NsZAl" target="_blank" rel="noopener">mbed离线例程</a></td>
-<td>STMF1、F4、F7、L0系列例程</td>
-</tr>
-<tr>
-<td>3</td>
-<td><a href="https://pan.baidu.com/s/1oAbvXnc" target="_blank" rel="noopener">Tools</a></td>
-<td>常用工具  </td>
-</tr>
-</tbody>
-</table>
-<p>作者才疏识浅，有错误和不足望指正。<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CooCox</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -335,161 +193,36 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mbed</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">蓝桥嵌入式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/mbed入门//" class="article-tag-list-link color2">mbed入门</a>
+        			<a href="/categories/蓝桥嵌入式//" class="article-tag-list-link color1">蓝桥嵌入式</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/05/搭建支持mbed的Keil开发环境/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/02/08/使用CooCox-MDK-插件开发STM32/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          使用CooCox MDK 插件开发STM32
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/02/01/你好，Hexo/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">你好，Hexo</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Keil下载、安装"><span class="toc-number">1.</span> <span class="toc-text">1 Keil下载、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Keil-下载"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Keil 下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Keil安装"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Keil安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Keil支持包下载、安装"><span class="toc-number">2.</span> <span class="toc-text">2 Keil支持包下载、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-下载所需的支持包"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 下载所需的支持包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-支持包安装"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 支持包安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-获取mbed项目的Keil版本"><span class="toc-number">3.</span> <span class="toc-text">3 获取mbed项目的Keil版本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-注册mbed"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 注册mbed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-添加mbed-WEB编译器项目"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 添加mbed WEB编译器项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-导出离线工程"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 导出离线工程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-进行本地开发"><span class="toc-number">4.</span> <span class="toc-text">4 进行本地开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-使用Keil开发mbed离线项目"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 使用Keil开发mbed离线项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-资源下载"><span class="toc-number">5.</span> <span class="toc-text">5 资源下载</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
+    </div></section>
   
 
-  
-
-  
-
-  
-
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "http://yoursite.com/2018/02/05/搭建支持mbed的Keil开发环境/",
-  owner: 'gxuniot',
-  repo: 'gxuniot.github.io',
-  oauth: {
-    client_id: 'b9e19a024d02792bf2cf',
-    client_secret: '462408885e5a27df0bd9b3b8fc6550d3e1cac47f',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
-  
+    
 
 
           </div>
@@ -512,9 +245,9 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
